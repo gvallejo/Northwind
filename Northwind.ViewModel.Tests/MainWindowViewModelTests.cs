@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Northwind.Application.CustomerService;
+using Northwind.Model;
 using Northwind.Application;
 using Rhino.Mocks;
 

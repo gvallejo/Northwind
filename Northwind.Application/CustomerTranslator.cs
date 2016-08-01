@@ -3,7 +3,7 @@ namespace Northwind.Application
 {
     public class CustomerTranslator : IEntityTranslator<Model.Customer, Service.Customer>
     {
-        internal static IEntityTranslator<Model.Customer, Service.Customer> _instance;
+        public static IEntityTranslator<Model.Customer, Service.Customer> _instance;
 
         public static IEntityTranslator<Model.Customer, Service.Customer> Instance
         {
