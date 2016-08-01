@@ -43,7 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataMapper.cs" />
+    <Compile Include="CustomerTranslator.cs" />
+    <Compile Include="IEntityTranslator.cs" />
     <Compile Include="IUIDataProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service References\CustomerService\Reference.cs">
