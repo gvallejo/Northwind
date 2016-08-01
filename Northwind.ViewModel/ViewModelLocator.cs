@@ -1,9 +1,5 @@
 ﻿using Northwind.Application;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Northwind.Application.CustomerService;
 
 namespace Northwind.ViewModel
 {
@@ -15,11 +11,9 @@ namespace Northwind.ViewModel
         {
             get
             {
-                if (_mainWindowViewModel == null)
-                {
-                    _mainWindowViewModel = new MainWindowViewModel(new UIDataProvider());
-                }
-                return _mainWindowViewModel;
+                // return the value of _mainWindowViewModel if _mainWindowViewModel is NOT null; otherwise,
+                // if _mainWindowViewModel = null, return -1.
+                return _mainWindowViewModel ?? (_mainWindowViewModel = new MainWindowViewModel(new UIDataProvider(new CustomerServiceClient())));
             }
         }
     }
