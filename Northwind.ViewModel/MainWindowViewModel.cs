@@ -12,6 +12,8 @@ namespace Northwind.ViewModel
     public class MainWindowViewModel
     {
         private readonly IUIDataProvider _dataProvider;
+        private Command _showDetailsCommand;
+        private string _selectedCustomerID;
 
         public ObservableCollection<ToolViewModel> Tools { get; set; }
 
@@ -49,18 +51,22 @@ namespace Northwind.ViewModel
 
         public string SelectedCustomerID
         {
-            get;
-            set;
+            get { return _selectedCustomerID;}
+            set
+            {
+                _selectedCustomerID = value;
+                ShowDetailsCommand.RaiseCanExecuteChanged();
+            }
         }
         public MainWindowViewModel(IUIDataProvider dataProvider)
         {
             _dataProvider = dataProvider;
             Tools = new ObservableCollection<ToolViewModel>();
         }
-        public void ShowCustomerDetails()
+        public void ShowCustomerDetails(object parameter)
         {
-            if (string.IsNullOrEmpty(SelectedCustomerID))
-                throw new InvalidOperationException("SelectedCustomerID can't be null");
+            if (!IsCustomerSelected(null))
+                throw new InvalidOperationException("Unable to show details because no customer is selected");
 
             //Query the Tools tab control for a CustomerDetailsViewModel that has a customerID == SelectedCustomerID
             CustomerDetailsViewModel customerDetailsViewModel = GetCustomerDetailsTool(SelectedCustomerID);
@@ -86,5 +92,23 @@ namespace Northwind.ViewModel
                 }
             }
         }
+
+        public bool IsCustomerSelected(object parameter)
+        {
+            return !string.IsNullOrEmpty(SelectedCustomerID);
+        }
+
+        public Command ShowDetailsCommand
+        {
+            get
+            {
+                return _showDetailsCommand ?? (new Command(ShowCustomerDetails, IsCustomerSelected));
+            }
+
+            
+        }
+
+
+
     }
 }

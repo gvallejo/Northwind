@@ -33,16 +33,17 @@
                         </TextBlock.LayoutTransform></TextBlock>
                 </Expander.Header>
                 <StackPanel>
-                <ListBox ItemsSource="{Binding Customers}" 
+                    <ListBox 
+                        ItemsSource="{Binding Customers}" 
                          DisplayMemberPath="CompanyName" 
                          SelectedValuePath="CustomerID"
-                         VerticalAlignment="Top" 
-                         SelectedValue="{Binding SelectedCustomerID}"
+                         VerticalAlignment="Top"                          
+                         SelectedValue="{Binding SelectedCustomerID, UpdateSourceTrigger=PropertyChanged}"
                          Height="180" Width="250" />
                     <ContentControl Margin="0, 3">
-                        <Hyperlink Click="Hyperlink_Click">
-                            <TextBlock Text="Show Details" />
-                        </Hyperlink>
+                        <Hyperlink  Command="{Binding ShowDetailsCommand}" >
+                        <TextBlock Text="Show Details" />
+                    </Hyperlink>
                     </ContentControl>
                 </StackPanel>
             </Expander>
