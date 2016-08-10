@@ -6,13 +6,16 @@ using System;
 using System.ComponentModel;
 using System.Windows.Data;
 using System.Linq;
+using GalaSoft.MvvmLight.CommandWpf;
+
+
 
 namespace Northwind.ViewModel
 {
     public class MainWindowViewModel
     {
         private readonly IUIDataProvider _dataProvider;
-        private Command _showDetailsCommand;
+        private RelayCommand _showDetailsCommand;
         private string _selectedCustomerID;
 
         public ObservableCollection<ToolViewModel> Tools { get; set; }
@@ -63,9 +66,9 @@ namespace Northwind.ViewModel
             _dataProvider = dataProvider;
             Tools = new ObservableCollection<ToolViewModel>();
         }
-        public void ShowCustomerDetails(object parameter)
+        public void ShowCustomerDetails()
         {
-            if (!IsCustomerSelected(null))
+            if (!IsCustomerSelected())
                 throw new InvalidOperationException("Unable to show details because no customer is selected");
 
             //Query the Tools tab control for a CustomerDetailsViewModel that has a customerID == SelectedCustomerID
@@ -93,16 +96,16 @@ namespace Northwind.ViewModel
             }
         }
 
-        public bool IsCustomerSelected(object parameter)
+        public bool IsCustomerSelected()
         {
             return !string.IsNullOrEmpty(SelectedCustomerID);
         }
 
-        public Command ShowDetailsCommand
+        public RelayCommand ShowDetailsCommand
         {
             get
             {
-                return _showDetailsCommand ?? (new Command(ShowCustomerDetails, IsCustomerSelected));
+                return _showDetailsCommand ?? (new RelayCommand(ShowCustomerDetails, IsCustomerSelected));
             }
 
             

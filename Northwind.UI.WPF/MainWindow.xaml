@@ -38,7 +38,7 @@
                          DisplayMemberPath="CompanyName" 
                          SelectedValuePath="CustomerID"
                          VerticalAlignment="Top"                          
-                         SelectedValue="{Binding SelectedCustomerID, UpdateSourceTrigger=PropertyChanged}"
+                         SelectedValue="{Binding SelectedCustomerID}"
                          Height="180" Width="250" />
                     <ContentControl Margin="0, 3">
                         <Hyperlink  Command="{Binding ShowDetailsCommand}" >

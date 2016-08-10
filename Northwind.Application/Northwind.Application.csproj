@@ -44,7 +44,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Command.cs" />
     <Compile Include="CustomerTranslator.cs" />
     <Compile Include="IEntityTranslator.cs" />
     <Compile Include="IUIDataProvider.cs" />
